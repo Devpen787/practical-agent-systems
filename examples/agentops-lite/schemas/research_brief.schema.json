@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "research_brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "headline",
+    "summary",
+    "sources"
+  ],
+  "properties": {
+    "headline": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "run_id": "vendor-model-refresh-2026-03-20-evidence-research-agent-2026-03-21t17-52-31-00-00",
+  "agent_id": "evidence-research-agent",
+  "candidate": {
+    "proposal_id": "vendor-model-refresh-2026-03-20",
+    "vendor": "openai",
+    "headline": "GPT-5.4 model refresh"
+  },
+  "fixture_set": {
+    "suite_id": "research-os",
+    "paths": [
+      "examples/agentops-lite/fixtures/claim_extraction_cases.json",
+      "examples/agentops-lite/fixtures/retrieval_cases.json",
+      "examples/agentops-lite/fixtures/support_check_cases.json"
+    ]
+  },
+  "metrics": {
+    "claim_extraction_precision": 1.0,
+    "claim_extraction_recall": 1.0,
+    "retrieval_hit_at_k": 1.0,
+    "support_check_accuracy": 1.0,
+    "unsupported_sentence_rate_max": 0.0
+  },
+  "trajectory_findings": [
+    {
+      "type": "local_benchmark",
+      "detail": "Ran the local benchmark suite over extraction, retrieval, and support-check fixtures."
+    }
+  ],
+  "failures": [],
+  "decision": "pass",
+  "notes": "Local suite executed cleanly. Live probes only run when explicitly enabled."
+}

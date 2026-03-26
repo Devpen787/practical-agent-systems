@@ -1,0 +1,54 @@
+{
+  "agent_id": "evidence-research-agent",
+  "owner_repo": "practical-agent-systems/examples/agentops-lite",
+  "goal": "Maintain a source-grounded research workflow that extracts claims, retrieves evidence, and drafts only from supportable statements.",
+  "inputs": [
+    {
+      "name": "vendor_change_watch",
+      "type": "proposal",
+      "location": "examples/agentops-lite/upgrade_proposal.json",
+      "required": true
+    },
+    {
+      "name": "benchmark_suite",
+      "type": "eval_suite",
+      "location": "examples/agentops-lite/fixtures/research_suite.json",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "research_brief",
+      "type": "json",
+      "location": "examples/agentops-lite/out/research_brief.json"
+    },
+    {
+      "name": "eval_result",
+      "type": "json",
+      "location": "examples/agentops-lite/eval_result.json"
+    }
+  ],
+  "tools": [
+    "structured-output-validate",
+    "fixture-pack-runner",
+    "retrieval-checker",
+    "proposal-writer",
+    "report-renderer"
+  ],
+  "approval_policy": {
+    "mode": "recommend_and_pr",
+    "requires_human_for": [
+      "production-model-promotion",
+      "paid-api-enablement",
+      "schema-contract-change"
+    ],
+    "auto_promote_prod": false
+  },
+  "schedule": {
+    "cadence": "weekly-upgrade-review-and-manual-runs",
+    "trigger": "scheduled-and-manual"
+  },
+  "eval_suite": "examples/agentops-lite/fixtures/research_suite.json",
+  "model_policy_ref": "examples/agentops-lite/model_policy.json",
+  "risk_level": "high"
+}

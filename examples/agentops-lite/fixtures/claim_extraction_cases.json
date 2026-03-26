@@ -1,0 +1,13 @@
+[
+  {
+    "case_id": "claim-001",
+    "input": "OpenAI released a GPT-5.4 model update for API users.",
+    "expected_claims": [
+      {
+        "subject": "OpenAI",
+        "predicate": "released",
+        "object": "GPT-5.4 model update"
+      }
+    ]
+  }
+]

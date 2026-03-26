@@ -22,6 +22,8 @@ This repo is organized around three example tracks:
 
 Each one is meant to stay small, readable, and real.
 
+`agentops-lite` is the first one that is turning into an actual inspectable loop instead of a placeholder.
+
 ## Why this repo exists
 
 A lot of agent work online falls into one of three buckets:
@@ -72,10 +74,6 @@ It is not:
 - a fully autonomous agent platform
 - a benchmark theater project
 - a promise that every example is production-ready
-
-## Current status
-
-The repo is still early. The structure is in place and the next step is to turn the first example into something small, clean, and worth reading all the way through.
 
 ## Start here
 

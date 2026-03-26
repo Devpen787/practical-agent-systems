@@ -1,0 +1,8 @@
+{
+  "headline": "Official GPT-5.4 refresh remains compatible with the current research workflow",
+  "summary": "Benchmark performance stayed within threshold, so the candidate can move forward to canary review rather than remain a watch-only item.",
+  "sources": [
+    "https://developers.openai.com/api/docs/models/gpt-5.4",
+    "../eval_result.json"
+  ]
+}

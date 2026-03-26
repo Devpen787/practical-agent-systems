@@ -1,0 +1,9 @@
+{
+  "suite_id": "research-os",
+  "description": "Small held-out fixture set for extraction, retrieval, and support-check checks.",
+  "cases": [
+    "claim_extraction_cases.json",
+    "retrieval_cases.json",
+    "support_check_cases.json"
+  ]
+}

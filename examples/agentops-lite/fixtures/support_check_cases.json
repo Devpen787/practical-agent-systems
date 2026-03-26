@@ -1,0 +1,11 @@
+[
+  {
+    "case_id": "support-001",
+    "claim": "The candidate model update should not be promoted without evaluation.",
+    "evidence": [
+      "upgrade_proposal.json",
+      "model_policy.json"
+    ],
+    "expected_decision": "supported"
+  }
+]

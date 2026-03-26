@@ -21,7 +21,7 @@ They are also a much better public surface than linking a large private operatin
 
 A minimal example of reviewable agent operations.
 
-Intended contents:
+Current contents:
 
 - an example agent manifest
 - an example model policy

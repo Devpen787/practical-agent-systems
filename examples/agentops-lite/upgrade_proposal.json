@@ -1,0 +1,58 @@
+{
+  "proposal_id": "vendor-model-refresh-2026-03-20",
+  "date": "2026-03-20",
+  "change_type": "model_swap",
+  "vendor": "openai",
+  "current": {
+    "source_id": "openai-models-gpt54",
+    "tracked_by": [
+      "examples/agentops-lite/model_policy.json"
+    ]
+  },
+  "candidate": {
+    "headline": "GPT-5.4 model refresh",
+    "location": "https://developers.openai.com/api/docs/models/gpt-5.4",
+    "source_summary": "Official model update for the current primary model family."
+  },
+  "motivation": "Review the official model change and determine whether it improves the workflow without increasing review burden.",
+  "hypothesis": "If the updated model holds benchmark quality and keeps unsupported statements at zero, it should advance to canary rather than staying a watch item.",
+  "affected_agents": [
+    "evidence-research-agent"
+  ],
+  "eval_plan": {
+    "suite_refs": [
+      "examples/agentops-lite/fixtures/research_suite.json"
+    ],
+    "target_metrics": {
+      "evidence-research-agent": {
+        "claim_extraction_precision": 0.95,
+        "claim_extraction_recall": 0.95,
+        "retrieval_hit_at_k": 0.9,
+        "support_check_accuracy": 0.9,
+        "unsupported_sentence_rate_max": 0.05
+      }
+    },
+    "promotion_stages": [
+      "watch",
+      "candidate",
+      "sandbox_eval",
+      "canary",
+      "recommend_and_pr",
+      "manual_prod_promote",
+      "post_promote_monitor"
+    ]
+  },
+  "cost_impact": {
+    "status": "unknown",
+    "note": "Estimate during sandbox eval."
+  },
+  "risk": {
+    "level": "high",
+    "note": "Human review is required before any production promotion."
+  },
+  "rollback_plan": {
+    "mode": "restore_prior_model_policy",
+    "reference": "examples/agentops-lite/reports/rollback_history.json"
+  },
+  "decision_status": "candidate"
+}

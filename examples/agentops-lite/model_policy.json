@@ -1,0 +1,33 @@
+{
+  "primary_vendor": "openai",
+  "primary_model_prod": {
+    "family": "gpt-5.4",
+    "pin": "manual-pin-required-before-prod",
+    "source": "official-model-page"
+  },
+  "primary_model_canary": {
+    "family": "gpt-5.4",
+    "track": "latest-compatible-alias",
+    "source": "official-model-page"
+  },
+  "fallback_model": {
+    "vendor": "anthropic",
+    "family": "claude-sonnet-4-6",
+    "mode": "manual-fallback"
+  },
+  "reasoning_profile": {
+    "default_effort": "medium",
+    "escalation_rule": "Escalate to high only when retrieval or support-check accuracy needs it."
+  },
+  "tool_mode": {
+    "strategy": "single-agent-with-tools",
+    "allow_parallel": true,
+    "allow_long_running": true
+  },
+  "structured_output_schema_ref": "examples/agentops-lite/schemas/research_brief.schema.json",
+  "promotion_rule": {
+    "mode": "recommend_and_pr",
+    "gate": "held-out-fixtures-plus-cost-latency-and-trajectory-checks",
+    "rollback_ref": "examples/agentops-lite/reports/rollback_history.json"
+  }
+}

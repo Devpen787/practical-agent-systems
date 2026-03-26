@@ -1,0 +1,7 @@
+[
+  {
+    "case_id": "retrieval-001",
+    "query": "OpenAI GPT-5.4 model page",
+    "expected_source": "https://developers.openai.com/api/docs/models/gpt-5.4"
+  }
+]
