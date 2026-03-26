@@ -1,14 +1,16 @@
 # Practical Agent Systems
 
-`practical-agent-systems` is a small public repo for reviewable agent workflows.
+I like building systems that make complicated work feel simpler.
 
-It focuses on three things:
+This repo is a small public proof surface for that idea in agent form.
 
-- agent operations with explicit evaluation and upgrade discipline
-- browser-based workflows with approval gates
-- source-grounded research patterns that keep claims tied to evidence
+It is where I am packaging a few patterns I keep coming back to:
 
-The goal is not to show the biggest possible agent stack. The goal is to show patterns that are actually useful in real work and easy to inspect.
+- agent operations that can be reviewed instead of “trusted”
+- browser workflows that stage actions before they execute them
+- research flows that keep claims tied to evidence
+
+The point is not to show the largest possible agent stack. The point is to show a few patterns that are useful, inspectable, and honest about where human judgment still matters.
 
 ## What is in this repo
 
@@ -18,17 +20,17 @@ This repo is organized around three example tracks:
 - [`examples/browser-queue`](./examples/browser-queue)
 - [`examples/support-check`](./examples/support-check)
 
-Each example is meant to be small, readable, and practical.
+Each one is meant to stay small, readable, and real.
 
 ## Why this repo exists
 
-A lot of agent projects are either:
+A lot of agent work online falls into one of three buckets:
 
 - toy demos with no real workflow constraints
 - vague “AI automation” claims with nothing inspectable behind them
 - large internal systems that are too messy to share directly
 
-This repo is meant to be the opposite:
+I wanted something that lands in the gap between those three:
 
 - narrow enough to understand quickly
 - concrete enough to inspect
@@ -73,7 +75,7 @@ It is not:
 
 ## Current status
 
-The repo is in scaffold phase. The structure is in place and the next step is to turn the first example into a clean public artifact.
+The repo is still early. The structure is in place and the next step is to turn the first example into something small, clean, and worth reading all the way through.
 
 ## Start here
 
@@ -82,4 +84,4 @@ If you want the quickest read:
 1. open [`examples/agentops-lite`](./examples/agentops-lite)
 2. then read [`docs/REPO_SHAPE.md`](./docs/REPO_SHAPE.md)
 
-That is the shortest path to understanding what the repo is trying to do.
+That is the shortest path to understanding what this repo is trying to prove.

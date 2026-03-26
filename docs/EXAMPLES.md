@@ -1,8 +1,10 @@
 # Examples
 
-This repo is being built around a few small examples rather than one large system.
+This repo is being built around a few small examples rather than one oversized system.
 
 ## Why
+
+That choice is deliberate.
 
 Smaller examples are easier to:
 
@@ -11,7 +13,7 @@ Smaller examples are easier to:
 - reuse
 - discuss in interviews or technical follow-up
 
-They are also a better public surface than linking a large private operating repo directly.
+They are also a much better public surface than linking a large private operating repo and expecting someone else to reverse-engineer the point.
 
 ## Planned example set
 
@@ -55,3 +57,5 @@ An example should only be added when it is:
 - understandable on its own
 - safe to share publicly
 - stronger as a proof artifact than as a private note
+
+If an example needs too much explanation before it becomes interesting, it probably does not belong here yet.
