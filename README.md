@@ -1,103 +1,85 @@
 # Practical Agent Systems
 
-Open-source proof of work for agent and automation systems that are meant to be inspected, reviewed, and used in real workflows.
+`practical-agent-systems` is a small public repo for reviewable agent workflows.
 
-This repo is not a dump of my private operating systems. It is a smaller public artifact built to show how I think about:
+It focuses on three things:
 
-- human-in-the-loop automation
-- browser-based workflows
-- source-grounded research systems
-- evaluation and upgrade discipline
-- agents that are useful in practice, not just impressive in demos
+- agent operations with explicit evaluation and upgrade discipline
+- browser-based workflows with approval gates
+- source-grounded research patterns that keep claims tied to evidence
 
-## Why this exists
+The goal is not to show the biggest possible agent stack. The goal is to show patterns that are actually useful in real work and easy to inspect.
 
-Most agent projects either stop at toy demos or hide the real workflow behind vague claims. I wanted a public surface that makes the important parts inspectable:
+## What is in this repo
 
-- what the system does
-- what it refuses to do automatically
-- how it is reviewed
-- how upgrades are evaluated
-- what makes it useful in real work
+This repo is organized around three example tracks:
 
-The private repo behind some of this work is broader and more operational. This public repo is intentionally narrower. It exists to show the patterns cleanly.
+- [`examples/agentops-lite`](./examples/agentops-lite)
+- [`examples/browser-queue`](./examples/browser-queue)
+- [`examples/support-check`](./examples/support-check)
 
-## What will live here
+Each example is meant to be small, readable, and practical.
 
-This repo will be built around three public proof artifacts.
+## Why this repo exists
 
-### 1. Reviewable agent operations
+A lot of agent projects are either:
 
-A lightweight control-plane pattern for:
+- toy demos with no real workflow constraints
+- vague “AI automation” claims with nothing inspectable behind them
+- large internal systems that are too messy to share directly
 
-- agent manifests
-- model policies
+This repo is meant to be the opposite:
+
+- narrow enough to understand quickly
+- concrete enough to inspect
+- honest about human review, failure handling, and boundaries
+
+## What the examples are meant to show
+
+### Agent operations
+
+How to treat agent workflows like systems that need:
+
+- manifests
+- policies
 - upgrade proposals
-- evaluation results
-- vendor-watch inputs
+- evaluation before promotion
 
-The point is simple: agent systems should not be upgraded by intuition alone.
+### Browser queue workflows
 
-### 2. Browser workflow automation
+How to structure browser automation so it can:
 
-A small browser-driven workflow that does real work without pretending full autonomy is always the goal.
+- stage actions
+- support dry runs
+- separate drafting from execution
+- keep irreversible actions behind review
 
-Examples of the pattern:
+### Support checking
 
-- digest and draft workflows
-- approval queues
-- browser execution with safety gates
-- dry-run before live actions
+How to keep research and drafting grounded by making it easier to answer:
 
-### 3. Source-grounded research
+- what does this claim rely on
+- what evidence supports it
+- where is the support weak
 
-A stripped research workflow that shows how claims, evidence, and support checking can stay reviewable instead of turning into black-box summarization.
+## What this repo is not
 
-This is the part most people describe vaguely. I want the structure to be visible.
+It is not:
 
-## Design rules
-
-This repo should feel:
-
-- inspectable
-- minimal
-- useful
-- honest about boundaries
-
-It should not feel like:
-
-- a personal dump
-- a secret internal repo accidentally made public
+- a personal operating system dump
+- a fully autonomous agent platform
 - a benchmark theater project
-- an AI-hype landing page
-
-## Planned public structure
-
-```text
-practical-agent-systems/
-├── README.md
-├── docs/
-│   ├── REPO_SHAPE.md
-│   └── EXTRACTION_PLAN.md
-├── examples/
-│   ├── agentops-lite/
-│   ├── browser-queue/
-│   └── support-check/
-└── assets/
-```
-
-## What stays private
-
-The private systems behind this repo include broader operating surfaces, live workflows, and personal infrastructure that do not belong in a public artifact.
-
-This repo should not expose:
-
-- personal job-search automation
-- live posting pipelines
-- private profiles or credentials
-- internal-only glue code
-- rough experiments that add noise instead of proof
+- a promise that every example is production-ready
 
 ## Current status
 
-Scaffold phase. The next step is to extract and package the first public examples cleanly from the private systems they came from.
+The repo is in scaffold phase. The structure is in place and the next step is to turn the first example into a clean public artifact.
+
+## Start here
+
+If you want the quickest read:
+
+1. open [`examples/agentops-lite`](./examples/agentops-lite)
+2. then read [`docs/REPO_SHAPE.md`](./docs/REPO_SHAPE.md)
+
+That is the shortest path to understanding what the repo is trying to do.
