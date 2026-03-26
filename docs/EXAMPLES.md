@@ -32,12 +32,12 @@ Current contents:
 
 A minimal example of a browser workflow with safety gates.
 
-Intended contents:
+Current contents:
 
-- queue schema
-- pending action example
-- dry-run / live split
-- failure or retry handling pattern
+- queue file
+- dead-letter example
+- run-mode split
+- workflow diagram
 
 ### 3. `support-check`
 

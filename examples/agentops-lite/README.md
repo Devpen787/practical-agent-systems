@@ -33,6 +33,16 @@ The useful part is that you can hand this folder to another person and they can 
 
 That is a much better place to be than "we swapped the model and it seemed fine."
 
+## Small workflow diagram
+
+```mermaid
+flowchart LR
+    A["Agent manifest"] --> B["Model policy"]
+    B --> C["Upgrade proposal"]
+    C --> D["Eval result"]
+    D --> E["Recommend or reject"]
+```
+
 ## What to open first
 
 If you only have two minutes:

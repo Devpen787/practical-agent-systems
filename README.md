@@ -22,7 +22,7 @@ This repo is organized around three example tracks:
 
 Each one is meant to stay small, readable, and real.
 
-`agentops-lite` is the first one that is turning into an actual inspectable loop instead of a placeholder.
+`agentops-lite` and `browser-queue` now have real inspectable files behind them instead of placeholder descriptions.
 
 ## Why this repo exists
 

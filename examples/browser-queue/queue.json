@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "actions": [
+    {
+      "id": "post-20260326-001",
+      "type": "post",
+      "text": "Practical AI gets interesting when it removes real friction instead of adding one more dashboard.",
+      "reply_to_url": "",
+      "status": "pending",
+      "attempts": 0,
+      "created_at": "2026-03-26T09:00:00Z",
+      "updated_at": "2026-03-26T09:00:00Z",
+      "source": "drafts/latest.md",
+      "topic": "practical ai"
+    },
+    {
+      "id": "reply-20260326-002",
+      "type": "reply",
+      "text": "The interesting part is not that the workflow is onchain. It is whether people can still understand what happened after the room gets busy.",
+      "reply_to_url": "https://x.com/example/status/1234567890123456789",
+      "status": "pending",
+      "attempts": 1,
+      "created_at": "2026-03-26T09:05:00Z",
+      "updated_at": "2026-03-26T09:08:30Z",
+      "source": "drafts/latest.md",
+      "topic": "workflow clarity"
+    }
+  ]
+}
