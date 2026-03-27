@@ -67,7 +67,7 @@ Think:
 
 - research workflows that should stay tied to evidence
 - browser automations that should not quietly get more aggressive
-- internal tools where model swaps affect cost, quality, or review burden
+- team workflows where model swaps affect cost, quality, or review burden
 - shared team workflows where "who changed what?" should not be a mystery
 
 The point is not to slow the system down for fun.
@@ -100,12 +100,8 @@ The receipt.
 
 It shows what was tested, what passed, what failed, and what the decision was.
 
-## What this example is based on
+## Why keep it this small
 
-This public example is a simplified extraction from a larger private operating system I use for research, workflow automation, and vendor watch.
+The point of this example is not breadth.
 
-The private system does more.
-
-This example does one thing better:
-
-it is small enough to inspect without guesswork.
+It is to keep one useful loop visible enough that another person can inspect it without guesswork.

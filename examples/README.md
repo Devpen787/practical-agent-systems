@@ -6,7 +6,7 @@ These examples are meant to be:
 - inspectable
 - representative
 
-They should show the shape of the system clearly enough that a reader can understand the workflow without needing the private source repo.
+They should show the shape of the system clearly enough that a reader can understand the workflow without needing extra context.
 
 Current examples:
 

@@ -22,7 +22,7 @@ This repo is organized around three example tracks:
 
 Each one is meant to stay small, readable, and real.
 
-`agentops-lite` and `browser-queue` now have real inspectable files behind them instead of placeholder descriptions.
+`agentops-lite` and `browser-queue` now have real inspectable files behind them instead of vague descriptions.
 
 ## Why this repo exists
 
@@ -30,7 +30,7 @@ A lot of agent work online falls into one of three buckets:
 
 - toy demos with no real workflow constraints
 - vague “AI automation” claims with nothing inspectable behind them
-- large internal systems that are too messy to share directly
+- oversized systems that are too tangled to share directly
 
 I wanted something that lands in the gap between those three:
 

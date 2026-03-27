@@ -13,7 +13,7 @@ Smaller examples are easier to:
 - reuse
 - discuss in interviews or technical follow-up
 
-They are also a much better public surface than linking a large private operating repo and expecting someone else to reverse-engineer the point.
+They are also a much better public surface than linking a giant all-in-one system and expecting someone else to reverse-engineer the point.
 
 ## Planned example set
 
@@ -56,6 +56,6 @@ An example should only be added when it is:
 
 - understandable on its own
 - safe to share publicly
-- stronger as a proof artifact than as a private note
+- stronger as a proof artifact than as a loose idea
 
 If an example needs too much explanation before it becomes interesting, it probably does not belong here yet.

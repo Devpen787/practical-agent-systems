@@ -2,7 +2,7 @@
 
 This repo is intentionally small.
 
-The point is not to present a complete internal system. The point is to make a few reusable workflow patterns easy to inspect.
+The point is not to present a complete system. The point is to make a few reusable workflow patterns easy to inspect.
 
 ## Structure
 
