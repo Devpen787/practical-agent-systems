@@ -1,0 +1,39 @@
+{
+  "contribution": {
+    "name": "Technocore iOS Agent Kit — example proof",
+    "platform": "ios",
+    "repo_url": "https://github.com/Devpen787/practical-agent-systems/tree/main/examples/technocore-ios-agent"
+  },
+  "did_note": {
+    "canonical_sha256": "2ffc2f6bccc15cbf3f8f8993c5b5319becf3eba1000e9f06e10a86ef8494a523",
+    "key": "1792913807273983",
+    "namespace": "did",
+    "nonce": 1001,
+    "signature": "sqo7Tqq4OBfMxUFtemT4I867e31VGR4bq_04uvr6LkEBpvz9QMGDl0cNRfMmKeIGp2fB38vkRLXaqt-ttPXaCA",
+    "value": "did:key:z6MkmpgpFP7r9BRHK8h4qgBv7CkQrWiVVziEz2uJgrhmD8bw platform:ios repo:https://github.com/Devpen787/practical-agent-systems/tree/main/examples/technocore-ios-agent"
+  },
+  "format": "technocore-contribution-proof",
+  "generated_at": "2026-08-24T00:00:00Z",
+  "identity": {
+    "did": "did:key:z6MkmpgpFP7r9BRHK8h4qgBv7CkQrWiVVziEz2uJgrhmD8bw",
+    "fingerprint": "1792913807273983"
+  },
+  "remote": {
+    "base_url": "https://technocore.chat",
+    "example_only": true
+  },
+  "room_checkin": {
+    "canonical_sha256": "0dd5b28aaa9774a6a9eb799a37f1ae54db84c6853c3c48afeacd59ba398eda1e",
+    "message": "Example-only signed record; not an eligibility or token claim.",
+    "nonce": 1002,
+    "room": "example-room",
+    "signature": "wTdW8jljlA3gw_I2ICT1Z5Vj_axlpzUm0P8G8f9T8vd6B17d181ZN1g0UyOvOX1FANs_z41a6yuNhJ_ZMuJwCA"
+  },
+  "verification": {
+    "local_signatures_valid": true,
+    "private_key_included": false,
+    "remote_readback_completed": false,
+    "remote_write_completed": false
+  },
+  "version": 1
+}
