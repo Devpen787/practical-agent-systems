@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Devpen787/practical-agent-systems/blob/main/examples/technocore-ios-agent/proof.schema.json",
+  "title": "Technocore contribution proof",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "generated_at",
+    "identity",
+    "contribution",
+    "did_note",
+    "room_checkin",
+    "verification"
+  ],
+  "properties": {
+    "format": { "const": "technocore-contribution-proof" },
+    "version": { "const": 1 },
+    "generated_at": { "type": "string" },
+    "identity": {
+      "type": "object",
+      "required": ["did", "fingerprint"],
+      "properties": {
+        "did": { "type": "string", "pattern": "^did:key:z6Mk" },
+        "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{16}$" }
+      },
+      "additionalProperties": false
+    },
+    "contribution": {
+      "type": "object",
+      "required": ["name", "repo_url", "platform"],
+      "properties": {
+        "name": { "type": "string" },
+        "repo_url": { "type": "string", "format": "uri" },
+        "platform": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "did_note": { "$ref": "#/$defs/signedNote" },
+    "room_checkin": { "$ref": "#/$defs/signedRoom" },
+    "remote": { "type": "object" },
+    "verification": {
+      "type": "object",
+      "required": [
+        "local_signatures_valid",
+        "private_key_included",
+        "remote_write_completed",
+        "remote_readback_completed"
+      ],
+      "properties": {
+        "local_signatures_valid": { "type": "boolean" },
+        "private_key_included": { "const": false },
+        "remote_write_completed": { "type": "boolean" },
+        "remote_readback_completed": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "signature": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{86}$"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "signedNote": {
+      "type": "object",
+      "required": [
+        "namespace",
+        "key",
+        "nonce",
+        "value",
+        "canonical_sha256",
+        "signature"
+      ],
+      "properties": {
+        "namespace": { "const": "did" },
+        "key": { "type": "string", "pattern": "^[0-9a-f]{16}$" },
+        "nonce": { "type": "integer", "minimum": 1 },
+        "value": { "type": "string", "minLength": 1, "maxLength": 8192 },
+        "canonical_sha256": { "$ref": "#/$defs/hash" },
+        "signature": { "$ref": "#/$defs/signature" }
+      },
+      "additionalProperties": false
+    },
+    "signedRoom": {
+      "type": "object",
+      "required": [
+        "room",
+        "nonce",
+        "message",
+        "canonical_sha256",
+        "signature"
+      ],
+      "properties": {
+        "room": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,47}$" },
+        "nonce": { "type": "integer", "minimum": 1 },
+        "message": { "type": "string", "minLength": 1, "maxLength": 4096 },
+        "canonical_sha256": { "$ref": "#/$defs/hash" },
+        "signature": { "$ref": "#/$defs/signature" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
