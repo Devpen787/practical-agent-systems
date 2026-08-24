@@ -1,0 +1,13 @@
+# Private identity and local state must never enter Git.
+private/
+*.enc.json
+*.seed
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+technocore_local_state.json
+__pycache__/
+*.pyc
