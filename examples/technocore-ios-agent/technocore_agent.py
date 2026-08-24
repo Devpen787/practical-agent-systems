@@ -13,6 +13,7 @@ import getpass
 import hashlib
 import json
 import os
+import re
 import secrets
 import sys
 import tempfile
@@ -56,6 +57,7 @@ KDF_R = 8
 KDF_P = 1
 KDF_LENGTH = 32
 USER_AGENT = "technocore-ios-agent/1.0"
+ROOM_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,47}$")
 
 JsonObject = dict[str, Any]
 HttpGet = Callable[[str, str, float], tuple[int, str]]
@@ -231,15 +233,30 @@ def decrypt_identity(identity: JsonObject, passphrase: str) -> bytes:
         raise ToolError("identity file is missing encryption metadata")
     if kdf.get("name") != "scrypt" or cipher.get("name") != "aes-256-gcm":
         raise ToolError("identity file uses unsupported encryption")
+    try:
+        kdf_parameters = (
+            int(kdf.get("n", 0)),
+            int(kdf.get("r", 0)),
+            int(kdf.get("p", 0)),
+            int(kdf.get("length", 0)),
+        )
+    except (TypeError, ValueError) as exc:
+        raise ToolError("identity file has malformed scrypt parameters") from exc
+    if kdf_parameters != (KDF_N, KDF_R, KDF_P, KDF_LENGTH):
+        raise ToolError("identity file uses unsupported scrypt parameters")
+    if identity.get("fingerprint") != did_fingerprint(did):
+        raise ToolError("identity fingerprint does not match its DID")
     salt = b64url_decode(str(kdf.get("salt", "")))
     nonce = b64url_decode(str(cipher.get("nonce", "")))
     ciphertext = b64url_decode(str(cipher.get("ciphertext", "")))
+    if len(salt) != 16 or len(nonce) != 12 or len(ciphertext) != 48:
+        raise ToolError("identity file has malformed encryption payload lengths")
     key = _derive_encryption_key(
         passphrase,
         salt,
-        n=int(kdf.get("n", 0)),
-        r=int(kdf.get("r", 0)),
-        p=int(kdf.get("p", 0)),
+        n=KDF_N,
+        r=KDF_R,
+        p=KDF_P,
     )
     aad = f"{IDENTITY_FORMAT}:{IDENTITY_VERSION}:{did}".encode("utf-8")
     try:
@@ -343,6 +360,8 @@ def _validate_base_url(base_url: str) -> str:
     parsed = urlparse(base_url)
     if parsed.scheme != "https" or not parsed.netloc or parsed.params or parsed.query or parsed.fragment:
         raise ToolError("base URL must be a plain HTTPS origin")
+    if parsed.username or parsed.password:
+        raise ToolError("base URL must not contain credentials")
     if parsed.path not in ("", "/"):
         raise ToolError("base URL must not contain a path")
     return base_url.rstrip("/")
@@ -377,8 +396,11 @@ def build_registration_payload(
     did = did_from_private_seed(seed)
     fingerprint = did_fingerprint(did)
     room = clean_text(room, 48)
-    if any(character not in "abcdefghijklmnopqrstuvwxyz0123456789_-" for character in room):
-        raise ToolError("room name must use lowercase letters, digits, underscore, or hyphen")
+    if not ROOM_RE.fullmatch(room):
+        raise ToolError(
+            "room name must be 1-48 lowercase letters, digits, underscores, or hyphens "
+            "and start with a letter or digit"
+        )
     repo_url = clean_text(repo_url, 500)
     note_value = clean_text(f"{did} platform:ios repo:{repo_url}", MAX_NOTE_CHARS)
     message = clean_text(message, MAX_MESSAGE_CHARS)
@@ -465,9 +487,10 @@ def register_identity(
     )
 
     note_found = payload["did_note"]["value"] in note_read_body
+    rendered_key = payload["did"].removeprefix("did:key:")
     room_found = (
         payload["room_checkin"]["message"] in room_read_body
-        and payload["did"] in room_read_body
+        and rendered_key in room_read_body
     )
     proof: JsonObject = {
         "format": PROOF_FORMAT,
@@ -539,6 +562,18 @@ def verify_proof_data(proof: JsonObject) -> list[str]:
         return [str(exc)]
     if identity.get("fingerprint") != expected_fingerprint:
         errors.append("DID fingerprint does not match")
+    contribution = proof.get("contribution")
+    if not isinstance(contribution, dict):
+        errors.append("proof is missing contribution metadata")
+        contribution = {}
+    repo_url = str(contribution.get("repo_url", ""))
+    expected_note_value = f"{did} platform:ios repo:{repo_url}"
+    if note.get("namespace") != "did":
+        errors.append("DID note namespace must be did")
+    if note.get("key") != expected_fingerprint:
+        errors.append("DID note key does not match the fingerprint")
+    if note.get("value") != expected_note_value:
+        errors.append("DID note does not bind this DID to the contribution URL")
 
     try:
         note_canonical = canonical_note(

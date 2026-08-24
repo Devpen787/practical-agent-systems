@@ -28,6 +28,9 @@ class TechnocoreAgentTests(unittest.TestCase):
         self.assertEqual(agent.decrypt_identity(identity, self.passphrase), self.seed)
         with self.assertRaises(agent.ToolError):
             agent.decrypt_identity(identity, "this is the wrong passphrase")
+        identity["kdf"]["n"] = agent.KDF_N * 2
+        with self.assertRaisesRegex(agent.ToolError, "unsupported scrypt parameters"):
+            agent.decrypt_identity(identity, self.passphrase)
 
     def test_private_identity_refuses_git_tree(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -49,6 +52,23 @@ class TechnocoreAgentTests(unittest.TestCase):
         self.assertEqual(agent.verify_proof_data(proof), [])
         proof["room_checkin"]["message"] = "tampered"
         self.assertTrue(agent.verify_proof_data(proof))
+
+    def test_proof_binds_the_contribution_url(self) -> None:
+        proof = agent.create_example_proof()
+        proof["contribution"]["repo_url"] = "https://example.com/other"
+        errors = agent.verify_proof_data(proof)
+        self.assertTrue(any("contribution URL" in error for error in errors))
+
+    def test_room_name_matches_the_server_rule(self) -> None:
+        with self.assertRaises(agent.ToolError):
+            agent.build_registration_payload(
+                seed=self.seed,
+                repo_url="https://example.com/repo",
+                room="-invalid",
+                message="hello",
+                note_nonce=1,
+                room_nonce=2,
+            )
 
     def test_secret_scan_catches_identity(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -80,7 +100,8 @@ class TechnocoreAgentTests(unittest.TestCase):
                         "Technocore iOS agent online. Local key custody and public verification kit: "
                         "https://example.com/repo"
                     )
-                    return 200, f"[1 now] <{identity['did']}> {message}\n"
+                    rendered_key = identity["did"].removeprefix("did:key:")
+                    return 200, f"[1 now] <{rendered_key}> {message}\n"
                 return 200, "Written.\n"
 
             proof = agent.register_identity(
